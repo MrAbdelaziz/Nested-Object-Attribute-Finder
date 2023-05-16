@@ -1,29 +1,18 @@
 /*
-                                      E-mail:
-   [[[[[[[[[[[[[[[      ]]]]]]]]]]]]]]] █▀▀▀▀▀█ ▄█ ▄▄█▀▄█ █▀▀▀▀▀█
-   [:::::[                      ]:::::] █ ███ █ ▄█▀█▄ ▄▀  █ ███ █
-   [:::::[                      ]:::::] █ ▀▀▀ █ ▄ █ ▀  ▄▀ █ ▀▀▀ █
-   [:::::[                      ]:::::] ▀▀▀▀▀▀▀ ▀ ▀ ▀ ▀ ▀ ▀▀▀▀▀▀▀
-   [:::::[                      ]:::::] ▀█▀██▄▀▀▀█▀█▀▀▀ █▀ █ ▀▄▀ 
-   [:::::[ CODED BY MrAbdelaziz ]:::::] ▄  ▀  ▀ ▄█▄▄ ▀██▀▄█▄█ ▀▀█
-   [:::::[ Github:MrAbdelaziz   ]:::::] ▄█▄█ ▀▀ ▀▀▄█▀█▀▀▄▀▀ ▀ ▀▀ 
-   [:::::[                      ]:::::] █ █▄ ▀▀▄▀▄ ▄▄ ██▄ ▀ ▀  ██
-   [:::::[                      ]:::::] ▀ ▀▀▀▀▀▀█▀▄▄▀▀▀▄█▀▀▀██▀▀▀
-   [:::::[                      ]:::::] █▀▀▀▀▀█ ▀▀█▄▀ ▄ █ ▀ █  ▀█
-   [:::::[                      ]:::::] █ ███ █ █▀▀███▀▀▀██▀████▄
-   [:::::[                      ]:::::] █ ▀▀▀ █ ██▄ ▀ ▄▄▄▄▄█ ▀  █
-   [[[[[[[[[[[[[[[      ]]]]]]]]]]]]]]] ▀▀▀▀▀▀▀ ▀▀ ▀▀▀▀   ▀  ▀▀▀▀
+   [[[[[[[[[[[[[[[      ]]]]]]]]]]]]]]]
+   [:::::[                      ]:::::] 
+   [:::::[                      ]:::::] 
+   [:::::[                      ]:::::] 
+   [:::::[                      ]:::::] 
+   [:::::[ CODED BY MrAbdelaziz ]:::::] 
+   [:::::[ Github:MrAbdelaziz   ]:::::] 
+   [:::::[                      ]:::::] 
+   [:::::[                      ]:::::] 
+   [:::::[                      ]:::::] 
+   [:::::[                      ]:::::] 
+   [:::::[                      ]:::::] 
+   [[[[[[[[[[[[[[[      ]]]]]]]]]]]]]]] 
    
-const attributeName = 'EXEMPLE';
-const result = findNestedObjectWithAttribute(document, attributeName);
-
-if (result) {
-  console.log(`Nested object with attribute "${attributeName}" found at path: ${result.path}`);
-  console.log(`Value of "${attributeName}": ${result.value}`);
-} else {
-  console.log(`Nested object with attribute "${attributeName}" not found.`);
-}
-
 */
 
 function findNestedObjectWithAttribute(obj, attributeName) {
@@ -34,7 +23,7 @@ function findNestedObjectWithAttribute(obj, attributeName) {
 
     for (let key in object) {
       const value = object[key];
-      const currentPath = `${path}.${key}`;
+      const currentPath = Array.isArray(object) ? `${path}[${key}]` : `${path}.${key}`;
 
       if (typeof value === 'object' && value !== null && !isStyleSheet(value)) {
         if (attributeName in value) {
@@ -51,6 +40,18 @@ function findNestedObjectWithAttribute(obj, attributeName) {
 function isStyleSheet(obj) {
   return obj instanceof CSSStyleSheet;
 }
+
+
+const attributeName = 'attribute Name HERE';
+const result = findNestedObjectWithAttribute(document, attributeName);
+
+if (result) {
+  console.log(`Nested object with attribute "${attributeName}" found at path: ${result.path}`);
+  console.log(`Value of "${attributeName}": ${result.value}`);
+} else {
+  console.log(`Nested object with attribute "${attributeName}" not found.`);
+}
+
 
 
 
